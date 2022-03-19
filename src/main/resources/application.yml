@@ -1,0 +1,20 @@
+app:
+  sub-domain: sub1
+  bounded-context: bd1
+  microservice: user
+
+server:
+  port: ${app.port:11000}
+  context-path: /netflix/api/v1
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+      javax:
+        persistence:
+          validation:
+            mode: none
