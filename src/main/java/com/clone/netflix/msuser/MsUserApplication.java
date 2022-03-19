@@ -50,12 +50,13 @@ public class MsUserApplication {
 
         final String contextPath = Optional.ofNullable(env.getProperty("server.context-path")).orElse("");
 
-        log.info("\n----------------------------------------------------------\n\t" +
+        log.info("\n-------------------------------------------------------------\n\t" +
                         "Application '{}' microservice is running! Access URLs:\n\t" +
                         "Local: \t\t{}://localhost:{}{}\n\t" +
                         "External: \t{}://{}:{}{}\n\t" +
                         "Swagger: \t{}://localhost:{}{}\n\t" +
-                        "Profile(s): \t{}\n----------------------------------------------------------",
+                        "Profile(s): {}\n" +
+                        "-------------------------------------------------------------",
                 env.getProperty("app.microservice"),
                 protocol,
                 env.getProperty("server.port"),
