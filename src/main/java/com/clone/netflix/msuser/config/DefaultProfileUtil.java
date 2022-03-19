@@ -1,6 +1,5 @@
 package com.clone.netflix.msuser.config;
 
-import com.clone.netflix.msuser.MsUserConstants;
 import org.springframework.boot.SpringApplication;
 import org.springframework.core.env.Environment;
 

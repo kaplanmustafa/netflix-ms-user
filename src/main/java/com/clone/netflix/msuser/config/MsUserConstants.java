@@ -1,4 +1,4 @@
-package com.clone.netflix.msuser;
+package com.clone.netflix.msuser.config;
 
 public class MsUserConstants {
 

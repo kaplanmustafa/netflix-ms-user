@@ -1,10 +1,13 @@
 package com.clone.netflix.msuser;
 
 import com.clone.netflix.msuser.config.DefaultProfileUtil;
+import com.clone.netflix.msuser.config.MsUserConstants;
+import com.clone.netflix.msuser.config.SwaggerConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Import;
 import org.springframework.core.env.Environment;
 
 import javax.annotation.PostConstruct;
@@ -15,6 +18,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 @SpringBootApplication
+@Import({SwaggerConfig.class})
 public class MsUserApplication {
 
     private static final Logger log = LoggerFactory.getLogger(MsUserApplication.class);
