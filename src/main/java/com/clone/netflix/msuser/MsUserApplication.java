@@ -54,6 +54,7 @@ public class MsUserApplication {
                         "Application '{}' microservice is running! Access URLs:\n\t" +
                         "Local: \t\t{}://localhost:{}{}\n\t" +
                         "External: \t{}://{}:{}{}\n\t" +
+                        "Swagger: \t{}://localhost:{}{}\n\t" +
                         "Profile(s): \t{}\n----------------------------------------------------------",
                 env.getProperty("app.microservice"),
                 protocol,
@@ -63,6 +64,9 @@ public class MsUserApplication {
                 InetAddress.getLocalHost().getHostAddress(),
                 env.getProperty("server.port"),
                 contextPath,
+                protocol,
+                env.getProperty("server.port"),
+                env.getProperty("app.swagger-url"),
                 env.getActiveProfiles());
     }
 }

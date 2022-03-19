@@ -2,6 +2,7 @@ app:
   sub-domain: sub1
   bounded-context: bd1
   microservice: user
+  swagger-url: /swagger-ui.html#/
 
 server:
   port: ${app.port:11000}
