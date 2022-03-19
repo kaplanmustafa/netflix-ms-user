@@ -2,6 +2,7 @@ package com.clone.netflix.msuser;
 
 import com.clone.netflix.msuser.config.DefaultProfileUtil;
 import com.clone.netflix.msuser.config.MsUserConstants;
+import com.clone.netflix.msuser.config.SecurityConfig;
 import com.clone.netflix.msuser.config.SwaggerConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +19,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 @SpringBootApplication
-@Import({SwaggerConfig.class})
+@Import({SwaggerConfig.class, SecurityConfig.class})
 public class MsUserApplication {
 
     private static final Logger log = LoggerFactory.getLogger(MsUserApplication.class);

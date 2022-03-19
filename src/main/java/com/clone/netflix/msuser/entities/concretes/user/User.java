@@ -3,7 +3,10 @@ package com.clone.netflix.msuser.entities.concretes.user;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import net.bytebuddy.implementation.bind.annotation.Default;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -24,9 +27,11 @@ public class User {
 
     private String email;
 
-    private Integer phone;
+    private String phone;
 
     private String password;
 
-    private Boolean isVerifiedEmail;
+    private Boolean isVerifiedEmail = Boolean.FALSE;
+
+    private String keyreg;
 }
