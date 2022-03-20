@@ -1,14 +1,17 @@
+#App
 app:
   sub-domain: sub1
   bounded-context: bd1
   microservice: user
   swagger-url: /swagger-ui.html#/
 
+#Server
 server:
   port: ${app.port:11000}
   servlet:
     context-path: /netflix/api/v1
 
+#JPA
 spring:
   jpa:
     hibernate:
@@ -21,6 +24,7 @@ spring:
           validation:
             mode: none
 
+#Logging
 logging:
   level:
     org.springframework: error
