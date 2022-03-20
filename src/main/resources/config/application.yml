@@ -6,7 +6,8 @@ app:
 
 server:
   port: ${app.port:11000}
-  context-path: /netflix/api/v1
+  servlet:
+    context-path: /netflix/api/v1
 
 spring:
   jpa:

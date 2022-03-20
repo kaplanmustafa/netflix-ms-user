@@ -4,8 +4,7 @@ import com.clone.netflix.msuser.config.DefaultProfileUtil;
 import com.clone.netflix.msuser.config.MsUserConstants;
 import com.clone.netflix.msuser.config.SecurityConfig;
 import com.clone.netflix.msuser.config.SwaggerConfig;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
@@ -20,9 +19,8 @@ import java.util.Optional;
 
 @SpringBootApplication
 @Import({SwaggerConfig.class, SecurityConfig.class})
+@Slf4j
 public class MsUserApplication {
-
-    private static final Logger log = LoggerFactory.getLogger(MsUserApplication.class);
 
     private final Environment env;
 
@@ -49,13 +47,13 @@ public class MsUserApplication {
             protocol = "https";
         }
 
-        final String contextPath = Optional.ofNullable(env.getProperty("server.context-path")).orElse("");
+        final String contextPath = Optional.ofNullable(env.getProperty("server.servlet.context-path")).orElse("");
 
         log.info("\n-------------------------------------------------------------\n\t" +
                         "Application '{}' microservice is running! Access URLs:\n\t" +
                         "Local: \t\t{}://localhost:{}{}\n\t" +
                         "External: \t{}://{}:{}{}\n\t" +
-                        "Swagger: \t{}://localhost:{}{}\n\t" +
+                        "Swagger: \t{}://localhost:{}{}{}\n\t" +
                         "Profile(s): {}\n" +
                         "-------------------------------------------------------------",
                 env.getProperty("app.microservice"),
@@ -68,6 +66,7 @@ public class MsUserApplication {
                 contextPath,
                 protocol,
                 env.getProperty("server.port"),
+                env.getProperty("server.servlet.context-path"),
                 env.getProperty("app.swagger-url"),
                 env.getActiveProfiles());
     }
