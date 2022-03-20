@@ -20,3 +20,11 @@ spring:
         persistence:
           validation:
             mode: none
+
+logging:
+  level:
+    org.springframework: error
+  pattern:
+    file: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
+  file:
+    name: src/main/resources/logs/netflix-ms-user-${app.port:11000}.log

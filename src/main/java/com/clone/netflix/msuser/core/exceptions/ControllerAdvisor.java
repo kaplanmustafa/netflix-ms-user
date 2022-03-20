@@ -1,6 +1,7 @@
 package com.clone.netflix.msuser.core.exceptions;
 
 import com.clone.netflix.msuser.core.results.error.ErrorDataResult;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -12,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestControllerAdvice
+@Slf4j
 public class ControllerAdvisor {
 
     private static final String VERIFICATION_FAILED_MESSAGE = "Verification Failed!";
@@ -25,12 +27,18 @@ public class ControllerAdvisor {
             validationErrors.put(fieldError.getField(), fieldError.getDefaultMessage());
         }
 
-        return new ErrorDataResult<>(validationErrors, VERIFICATION_FAILED_MESSAGE);
+        ErrorDataResult<Object> errorDataResult = new ErrorDataResult<>(validationErrors, VERIFICATION_FAILED_MESSAGE);
+        log.error("TID: " + errorDataResult.getTid() + " Ex: " + exceptions.getLocalizedMessage());
+
+        return errorDataResult;
     }
 
     @ExceptionHandler(value = CustomValidationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorDataResult<Object> handleCustomValidationException(CustomValidationException exceptions) {
-        return new ErrorDataResult<>(exceptions.getValidationErrors(), VERIFICATION_FAILED_MESSAGE);
+        ErrorDataResult<Object> errorDataResult = new ErrorDataResult<>(exceptions.getValidationErrors(), VERIFICATION_FAILED_MESSAGE);
+        log.error("TID: " + errorDataResult.getTid() + " Ex: " + exceptions.getValidationErrors());
+
+        return errorDataResult;
     }
 }

@@ -1,14 +1,19 @@
 package com.clone.netflix.msuser.core.results;
 
+import java.util.UUID;
+
 public class Result {
 
     private Boolean success;
 
     private String message;
 
+    private String tid;
+
     public Result(Boolean success, String message) {
-        this(success);
+        this.success = success;
         this.message = message;
+        this.tid = UUID.randomUUID().toString();
     }
 
     public Result(Boolean success) {
@@ -21,5 +26,9 @@ public class Result {
 
     public String getMessage() {
         return message;
+    }
+
+    public String getTid() {
+        return tid;
     }
 }

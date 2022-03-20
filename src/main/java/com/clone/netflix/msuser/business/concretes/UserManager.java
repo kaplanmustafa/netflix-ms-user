@@ -8,6 +8,7 @@ import com.clone.netflix.msuser.core.services.abstracts.PasswordService;
 import com.clone.netflix.msuser.dataAccess.abstracts.UserDao;
 import com.clone.netflix.msuser.entities.concretes.user.User;
 import com.clone.netflix.msuser.entities.dtos.AddUserDto;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Service
+@Slf4j
 public class UserManager implements UserService {
 
     private static final String EMAIL_NOT_UNIQUE_MESSAGE = "This Email Address Belongs to Another User!";
@@ -47,7 +49,10 @@ public class UserManager implements UserService {
         user.setPassword(passwordService.encodePassword(addUserDto.getPassword()));
         userDao.save(user);
 
-        return new SuccessResult(SUCCESSFUL_REGISTRATION_MESSAGE);
+        SuccessResult successResult = new SuccessResult(SUCCESSFUL_REGISTRATION_MESSAGE);
+        log.info("TID: " + successResult.getTid() + " Message: User created, user id: " + user.getId());
+
+        return successResult;
     }
 
     private void checkFieldsIsValid(AddUserDto addUserDto) {
