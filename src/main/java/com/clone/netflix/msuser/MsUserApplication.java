@@ -41,6 +41,7 @@ public class MsUserApplication {
         SpringApplication app = new SpringApplication(MsUserApplication.class);
         DefaultProfileUtil.addDefaultProfile(app);
         Environment env = app.run(args).getEnvironment();
+        final String serverPort = env.getProperty("server.port");
         String protocol = "http";
 
         if (env.getProperty("server.ssl.key-store") != null) {
@@ -58,14 +59,14 @@ public class MsUserApplication {
                         "-------------------------------------------------------------",
                 env.getProperty("app.microservice"),
                 protocol,
-                env.getProperty("server.port"),
+                serverPort,
                 contextPath,
                 protocol,
                 InetAddress.getLocalHost().getHostAddress(),
-                env.getProperty("server.port"),
+                serverPort,
                 contextPath,
                 protocol,
-                env.getProperty("server.port"),
+                serverPort,
                 env.getProperty("server.servlet.context-path"),
                 env.getProperty("app.swagger-url"),
                 env.getActiveProfiles());
