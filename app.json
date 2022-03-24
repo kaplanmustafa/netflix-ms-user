@@ -1,0 +1,8 @@
+{
+  "name": "netflix-clone-ms-user",
+  "buildpacks": [
+    {
+      "url": "heroku/maven"
+    }
+  ]
+}
